@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Feitosa.DesignPatterns
+namespace Feitosa.DesignPatterns.Tax
 {
     public interface ITax
     {

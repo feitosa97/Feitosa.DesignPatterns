@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Feitosa.DesignPatterns
+namespace Feitosa.DesignPatterns.Tax
 {
     public class TaxCalculator
     {
@@ -10,8 +10,6 @@ namespace Feitosa.DesignPatterns
         {
             double taxValue = tax.Calculate(budget);
             Console.WriteLine(taxValue);
-
-
         }
     }
 }

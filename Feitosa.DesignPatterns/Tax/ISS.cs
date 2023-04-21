@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Feitosa.DesignPatterns
+namespace Feitosa.DesignPatterns.Tax
 {
-    public class ICMS : ITax
+    public class ISS : ITax
     {
         public double Calculate(Budget budget)
         {
-            return budget.Value * 0.1d;
+            return budget.Value * 0.06d;
         }
     }
 }

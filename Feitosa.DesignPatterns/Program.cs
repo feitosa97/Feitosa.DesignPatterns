@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Feitosa.DesignPatterns.Tax;
 
 namespace Feitosa.DesignPatterns
@@ -7,19 +8,13 @@ namespace Feitosa.DesignPatterns
     {
         static void Main(string[] args)
         {
-            var calculator = new DiscountCalculator();
+            var iss = new ISS(new ICMS( new IKCV()));
 
-            var budget = new Budget(400d);
-            budget.AddItem(new Item("Item1", 250d));
-            budget.AddItem(new Item("Item2", 250d));
-            budget.AddItem(new Item("Item3", 250d));
-            budget.AddItem(new Item("Item4", 250d));
-            budget.AddItem(new Item("Item5", 250d));
-            budget.AddItem(new Item("Item6", 250d));
+            var budget = new Budget(500);
 
-            var discount = calculator.Calculate(budget);
+            double tax = iss.Calculate(budget);
 
-            Console.WriteLine(discount.ToString());
+            Console.WriteLine(tax);
         }
     }
 }

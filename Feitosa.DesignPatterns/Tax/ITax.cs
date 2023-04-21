@@ -4,8 +4,24 @@ using System.Text;
 
 namespace Feitosa.DesignPatterns.Tax
 {
-    public interface ITax
+    public abstract class ITax
     {
-        double Calculate(Budget budget);
+        public ITax AnotherTax { get; set; }
+        public abstract double Calculate(Budget budget);
+
+        public ITax(ITax anotherTax)
+        {
+            AnotherTax = anotherTax;
+        }
+
+        public ITax()
+        {
+            AnotherTax = null;
+        }
+        public double AnotherTaxCaculate(Budget budget)
+        {
+            if(AnotherTax == null) return 0;
+            return AnotherTax.Calculate(budget);
+        }
     }
 }

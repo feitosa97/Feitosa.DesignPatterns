@@ -6,13 +6,15 @@ namespace Feitosa.DesignPatterns.Tax
 {
     public abstract class TemplateTaxCalculate : ITax
     {
-        public double Calculate(Budget budget)
+        public TemplateTaxCalculate(ITax anotherTax) : base(anotherTax) { }
+        public TemplateTaxCalculate() : base() { }
+        public override double Calculate(Budget budget)
         {
             if(ShouldUseMaxTax(budget))
             {
-                return MaxTax(budget);
+                return MaxTax(budget) + AnotherTaxCaculate(budget);
             }
-            return MinTax(budget);
+            return MinTax(budget) + AnotherTaxCaculate(budget);
         }
         public abstract double MinTax(Budget budget);
         public abstract double MaxTax(Budget budget);

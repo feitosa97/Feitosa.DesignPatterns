@@ -6,9 +6,12 @@ namespace Feitosa.DesignPatterns.Tax
 {
     public class ISS : ITax
     {
-        public double Calculate(Budget budget)
+        public ISS(ITax anotherTax) : base(anotherTax) { }
+        public ISS() : base() { }
+
+        public override double Calculate(Budget budget)
         {
-            return budget.Value * 0.06d;
+            return budget.Value * 0.06d  + AnotherTaxCaculate(budget);
         }
     }
 }

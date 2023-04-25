@@ -44,9 +44,23 @@ namespace Feitosa.DesignPatterns.Invoice
             return this;
         }
 
+        public void AddEvent(IInvoiceEvent @event)
+        {
+            Events.Add(@event);
+        }
+
+        public IList<IInvoiceEvent> Events = new List<IInvoiceEvent>();
         public Invoice Build()
         {
-            return new Invoice(Name, DocumentNumber, IssueDate, TotalValue, Taxes, AllItems, Observation);
+            var invoice = new Invoice(Name, DocumentNumber, IssueDate, TotalValue, Taxes, AllItems, Observation);
+
+            foreach(var e in Events)
+                e.Execute(invoice);
+
+            return invoice;
         }
+
+        
+        
     }
 }

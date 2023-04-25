@@ -8,13 +8,19 @@ namespace Feitosa.DesignPatterns
     {
         static void Main(string[] args)
         {
-            var iss = new ISS(new ICMS( new IKCV()));
+            var budget = new Budget(500d);
 
-            var budget = new Budget(500);
+            Console.WriteLine(budget.Value);
+            budget.ApplyExtraDiscount();
 
-            double tax = iss.Calculate(budget);
+            Console.WriteLine(budget.Value);
+            budget.Approve();
+            budget.ApplyExtraDiscount();
+            Console.WriteLine(budget.Value);
 
-            Console.WriteLine(tax);
+            budget.Finish();
+
+            budget.ApplyExtraDiscount();
         }
     }
 }

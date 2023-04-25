@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Feitosa.DesignPatterns.Invoice;
 using Feitosa.DesignPatterns.Tax;
 
 namespace Feitosa.DesignPatterns
@@ -8,19 +9,19 @@ namespace Feitosa.DesignPatterns
     {
         static void Main(string[] args)
         {
-            var budget = new Budget(500d);
+            InvoiceBuilder creator = new InvoiceBuilder();
+            creator.ToCompany("Feitosa Inc.")
+                .SetDocument("11.123.123/0001-11")
+                .InCurrentDate()
+                .SetObservation("Any observation")
+                .AddItem(new InvoiceItem("I1", 100))
+                .AddItem(new InvoiceItem("I2", 60))
+                .AddItem(new InvoiceItem("I3", 230));
 
-            Console.WriteLine(budget.Value);
-            budget.ApplyExtraDiscount();
+            var invoice = creator.Build();
 
-            Console.WriteLine(budget.Value);
-            budget.Approve();
-            budget.ApplyExtraDiscount();
-            Console.WriteLine(budget.Value);
-
-            budget.Finish();
-
-            budget.ApplyExtraDiscount();
+            Console.WriteLine(invoice.GrossValue);
+            Console.WriteLine(invoice.Tax);
         }
     }
 }

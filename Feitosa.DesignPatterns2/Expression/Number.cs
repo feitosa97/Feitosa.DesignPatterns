@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Feitosa.DesignPatterns2.Visitor;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,14 +9,19 @@ namespace Feitosa.DesignPatterns2.Expression
     {
         public Number(int number)
         {
-            this.number = number;    
+            this.Value = number;    
         }
 
-        public int number { get; private set; }
+        public int Value { get; private set; }
 
         public int Calculate()
         {
-            return this.number;
+            return this.Value;
+        }
+
+        public void Accept(PrinterVisitor printer)
+        {
+            printer.PrintNumber(this);
         }
     }
 }

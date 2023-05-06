@@ -1,9 +1,11 @@
-﻿namespace Feitosa.DesignPatterns2.Expression
+﻿using Feitosa.DesignPatterns2.Visitor;
+
+namespace Feitosa.DesignPatterns2.Expression
 {
-    internal class Sum: IExpression
+    public class Sum: IExpression
     {
-        private IExpression Left;
-        private IExpression Right;
+        public IExpression Left { get; private set; }
+        public IExpression Right { get; private set; }
 
         public Sum(IExpression left, IExpression right)
         {
@@ -14,6 +16,11 @@
         public int Calculate()
         {
             return Left.Calculate() + Right.Calculate();
+        }
+
+        public void Accept(PrinterVisitor printer)
+        {
+            printer.PrintSum(this);
         }
     }
 }

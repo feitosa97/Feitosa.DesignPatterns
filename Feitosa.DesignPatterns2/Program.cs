@@ -1,6 +1,8 @@
 ﻿using Feitosa.DesignPatterns2.Factories;
+using Feitosa.DesignPatterns2.Notes;
 using Microsoft.Data.SqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Feitosa.DesignPatterns2
@@ -9,13 +11,21 @@ namespace Feitosa.DesignPatterns2
     {
         static void Main(string[] args)
         {
-            IDbConnection connection = new ConnectionFactory().GetConnection();
+            var notes = new MusicalNote();
 
-            IDbCommand command = connection.CreateCommand();
-            command.CommandText = "Select * From Sys.Tables";
-            command.CommandType = CommandType.Text;
-            command.ExecuteNonQuery();
+            var music = new List<INote>()
+            {
+                notes.Get("do"),
+                notes.Get("re"),
+                notes.Get("mi"),
+                notes.Get("fa"),
+                notes.Get("fa"),
+                notes.Get("fa")
+            };
 
+            var piano = new Piano();
+
+            piano.Beep(music);
 
         }
     }

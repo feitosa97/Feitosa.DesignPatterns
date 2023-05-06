@@ -1,4 +1,5 @@
 ﻿using Feitosa.DesignPatterns2.Contract;
+using Feitosa.DesignPatterns2.Expression;
 using Feitosa.DesignPatterns2.Factories;
 using Feitosa.DesignPatterns2.Notes;
 using System;
@@ -11,6 +12,16 @@ namespace Feitosa.DesignPatterns2
     {
         static void Main(string[] args)
         {
+            var left = new Sum(new Sum(new Number(1), new Number(100)), new Number(10));
+            var right = new Substract(new Number(20), new Number(10));
+            var sum = new Sum(left, right);
+
+            Console.WriteLine(sum.Calculate());
+        }
+        
+        public void Memento() 
+        { 
+
             var history = new History();
             var contract = new Contract.Contract(DateTime.Now, "Lucas", ContractType.New);
 
